@@ -49,7 +49,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            "app-deployer = app_deployer.__main__:main"
+            "deploy = app_deployer.__main__:main"
         ]
     },
 )
