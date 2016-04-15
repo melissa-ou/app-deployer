@@ -26,7 +26,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Mike Charles",
     author_email='mike.charles@noaa.gov',
-    url="https://github.com/mikecharles/app-deployer",
+    url="https://github.com/noaa-nws-cpc/app-deployer",
     packages=[
         'app_deployer',
     ],
