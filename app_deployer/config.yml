@@ -1,0 +1,8 @@
+# app-deployer app config file
+---
+contact-info:
+  name: Lord Voldemort
+  email: lord.voldemort@hogwarts.com
+sorting-info:
+  house: Slytherin
+...
