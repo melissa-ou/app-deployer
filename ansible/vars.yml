@@ -8,7 +8,7 @@ app_name: app-deployer
 # Directory to contain your app(s)
 app_root: "{{ HOME }}/apps"
 # Git repository containing your app (if public, use HTTPS version)
-git_repo: https://github.com/mikecharles/app-deployer
+git_repo: https://github.com/noaa-nws-cpc/app-deployer
 # Git branch to deploy
 git_branch: master
 # Version of Python to install in the virtual environment
