@@ -10,7 +10,7 @@ Types of Contributions
 
 ### Report Bugs
 
-Report bugs at <https://github.com/>mikecharles/app_deployer/issues.
+Report bugs at https://github.com/noaa-nws-cpc/app-deployer/issues.
 
 If you are reporting a bug, please include:
 
@@ -21,12 +21,12 @@ If you are reporting a bug, please include:
 ### Fix Bugs
 
 Look through the GitHub issues for bugs. Anything tagged with "bug" is
-open to whoever wants to implement it.
+open to whomever wants to fix it.
 
 ### Implement Features
 
 Look through the GitHub issues for features. Anything tagged with
-"feature" is open to whoever wants to implement it.
+"feature" is open to whomever wants to implement it.
 
 ### Write Documentation
 
@@ -34,7 +34,7 @@ App Deployer could always use more documentation, whether as part of the officia
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at <https://github.com/>mikecharles/app_deployer/issues.
+The best way to send feedback is to file an issue at https://github.com/noaa-nws-cpc/app-deployer/issues.
 
 If you are proposing a feature:
 
@@ -47,15 +47,15 @@ Get Started!
 
 Ready to contribute? Here's how to set up app_deployer for local development.
 
-1.  Fork the app_deployer repo on GitHub.
+1.  Fork the app-deployer repo on GitHub.
 2.  Clone your fork locally:
 
-        $ git clone git@github.com:your_name_here/app_deployer.git
+        $ git clone git@github.com:github_username/app-deployer.git
 
 3.  Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development:
 
-        $ mkvirtualenv app_deployer
-        $ cd app_deployer/
+        $ mkvirtualenv app-deployer
+        $ cd app-deployer/
         $ python setup.py develop
 
 4.  Create a branch for local development:
@@ -86,11 +86,11 @@ Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
 2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, 3.3, 3.4 and 3.5, and for PyPy. Check <https://travis-ci.org/>mikecharles/app_deployer/pull_requests and make sure that the tests pass for all supported Python versions.
+3. The pull request should work for Python 2.6, 2.7, 3.3, 3.4 and 3.5, and for PyPy. Check https://travis-ci.org/github_username/app-deployer/pull_requests and make sure that the tests pass for all supported Python versions.
 
 Tips
 ----
 
 To run a subset of tests:
 
-    $ python -m unittest tests.test_app_deployer
+    $ python -m unittest tests.test_XXX
