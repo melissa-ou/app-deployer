@@ -7,6 +7,9 @@ install:
   - pip install -e .
 script:
   - py.test
+notifications:
+  slack:
+    secure: L3i33tGphSOMtOD0Pp30wAQF6HVVtrgQ9GrQN5Y24mmBp5bOSPNmwpsirXNRA3oCuZSF7cwL3YC/PpoECnZMGK9RaS3IHWK7DAIPGF01vpHQp9LEb1w2GqrTArgGnSw4o+bqrFFOFNlIrga4/2i6aFMG/KuoIgpN3L2s82J1/MmsbbVj1sBt2zjRFHoa/AiTcPxIs5+QnJgqsewGVktDYxqZ5vhXnsrW+4LCzIiJ3k4Mr7Cr4t5Makhf4/XW1ph7T3pxCm8M8q8xTUU0Ckm7TT+Nt/lKocBPrF5hEt/K7gvQVWGUJw1JUkFwzx+3SorUAxsLZJiGclgNKS6TuNHdG7XG7pmcf6srzykDbge+TCxCraYjMzZsWJbQW6inq7n9WW+D3kDiLUyZ4zP+m8KyB4w7AGeoFySjhh35wzF5PDYFA3/s+DI1nBLzVV3ug2J+NPcECeSeIwSiZ8/VNGgfqYfLuet6DYgUlUBEWAH9vZR8iSQ7TZFMMK0NjmpNzTUaMTGSU9p7sTUzKMrw+xtcywV6ZYlJD+rBn62Mm6rkqEx62QhlUGCQsu4anYD3K0eWXKOT2483IFrG5vArELhSqYPjUyzeB+9f8jWoUh9J4an+juTP3px0M/5i/F83JG5w2quiVnP6nSyPbEKhoIpOhYb+L/HU1evHaUjFMu0sAMk=
 
 # After you create the Github repo and add it to Travis, run the
 # travis_pypi_setup.py script to finish PyPI deployment setup
