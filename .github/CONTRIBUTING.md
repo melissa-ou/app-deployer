@@ -1,96 +1,65 @@
-Contributing
-============
+# Contributing
 
-Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given.
+Follow these guidelines if you'd like to contribute to the project!
 
-You can contribute in many ways:
+---
 
-Types of Contributions
-----------------------
+### Table of Contents
 
-### Report Bugs
+Read through these guidelines before you get started:
 
-Report bugs at https://github.com/noaa-nws-cpc/app-deployer/issues.
+1. [Questions & Concerns](#questions--concerns)
+2. [Issues & Bugs](#issues--bugs)
+3. [Feature Requests](#feature-requests)
+4. [Submitting Pull Requests](#submitting-pull-requests)
+5. [Code Style](#code-style)
 
-If you are reporting a bug, please include:
+### Questions & Concerns
 
-- Your operating system name and version.
-- Any details about your local setup that might be helpful in troubleshooting.
-- Detailed steps to reproduce the bug.
+If you have any questions about using or developing for this project, shoot me
+an [email][1]!
 
-### Fix Bugs
+### Issues & Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" is
-open to whomever wants to fix it.
+Submit an [issue][2] or [pull request][3] with a fix if you find any bugs in
+the project. See [below](#submitting-pull-requests) for instructions on sending
+in pull requests, and be sure to reference the [code style guide](#code-style)
+first!
 
-### Implement Features
+When submitting an issue or pull request, make sure you're as detailed as possible
+and fill in all answers to questions asked in the templates. For example, an issue
+that simply states "X/Y/Z isn't working!" will be ignored.
 
-Look through the GitHub issues for features. Anything tagged with
-"feature" is open to whomever wants to implement it.
+### Feature Requests
 
-### Write Documentation
+Submit an [issue][2] to request a new feature. Features fall into one of two
+categories:
 
-App Deployer could always use more documentation, whether as part of the official App Deployer docs, in docstrings, or even on the web in blog posts, articles, and such.
+1. **Major**: Major changes should be discussed with me via [email][1]. I'm
+always open to suggestions and will get back to you as soon as I can!
+2. **Minor**: A minor feature can simply be added via a [pull request][3].
 
-### Submit Feedback
+### Submitting Pull Requests
 
-The best way to send feedback is to file an issue at https://github.com/noaa-nws-cpc/app-deployer/issues.
+Before you do anything, make sure you check the current list of [pull requests][4]
+to ensure you aren't duplicating anyone's work. Then, do the following:
 
-If you are proposing a feature:
+1. Fork the repository and make your changes in a git branch: `git checkout -b my-branch master`
+2. Read and follow the [code style guidelines][#code-style].
+3. Make sure your feature or fix doesn't break the project! Test thoroughly.
+4. Commit your changes, and be sure to leave a detailed commit message.
+5. Push your branch to your forked repo on GitHub: `git push origin my-branch`
+6. [Submit a pull request][3] and hold tight!
+7. If any changes are requested by the project maintainers, make them and follow
+this process again until the changes are merged.
 
-- Explain in detail how it would work.
-- Keep the scope as narrow as possible, to make it easier to implement.
-- Remember that this is a volunteer-driven project, and that contributions are welcome :)
+### Code Style
 
-Get Started!
-------------
+Please follow the coding style conventions detailed below:
 
-Ready to contribute? Here's how to set up app_deployer for local development.
+TBD
 
-1.  Fork the app-deployer repo on GitHub.
-2.  Clone your fork locally:
-
-        $ git clone git@github.com:github_username/app-deployer.git
-
-3.  Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development:
-
-        $ mkvirtualenv app-deployer
-        $ cd app-deployer/
-        $ python setup.py develop
-
-4.  Create a branch for local development:
-
-        $ git checkout -b name-of-your-bugfix-or-feature
-
-    Now you can make your changes locally.
-
-5.  When you're done making changes, check that your changes pass flake8 and the tests:
-
-        $ flake8 app_deployer tests
-        $ py.test
-
-    To get flake8, just pip install it into your virtualenv.
-
-6.  Commit your changes and push your branch to GitHub:
-
-        $ git add .
-        $ git commit -m "Your detailed description of your changes."
-        $ git push origin name-of-your-bugfix-or-feature
-
-7.  Submit a pull request through the GitHub website.
-
-Pull Request Guidelines
------------------------
-
-Before you submit a pull request, check that it meets these guidelines:
-
-1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, 3.3, 3.4 and 3.5, and for PyPy. Check https://travis-ci.org/github_username/app-deployer/pull_requests and make sure that the tests pass for all supported Python versions.
-
-Tips
-----
-
-To run a subset of tests:
-
-    $ python -m unittest tests.test_XXX
+[1]: mailto:mike.charles@noaa.gov
+[2]: https://github.com/noaa-nws-cpc/app-deployer/issues/new
+[3]: https://github.com/noaa-nws-cpc/app-deployer/compare
+[4]: https://github.com/noaa-nws-cpc/app-deployer/pulls
