@@ -57,7 +57,7 @@ this process again until the changes are merged.
 
 Please follow the coding style conventions detailed below:
 
-TBD
+- Keep lines less than 100 characters
 
 [1]: mailto:mike.charles@noaa.gov
 [2]: https://github.com/noaa-nws-cpc/app-deployer/issues/new
