@@ -4,6 +4,7 @@ include HISTORY.md
 include LICENSE
 include README.md
 include app_deployer/config.yml
+include app_deployer/app-inventory.yml
 
 recursive-include tests *
 recursive-exclude * __pycache__

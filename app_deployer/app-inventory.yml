@@ -1,0 +1,6 @@
+# Inventory of applications deployable by App-Deployer
+---
+- app-deployer:
+    git-url: https://github.com/noaa-nws-cpc/app-deployer.git
+    install-file: ansible/install.yml
+...
