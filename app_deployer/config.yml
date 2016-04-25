@@ -1,8 +1,9 @@
 # app-deployer app config file
 ---
-contact-info:
-  name: Lord Voldemort
-  email: lord.voldemort@hogwarts.com
-sorting-info:
-  house: Slytherin
+# App inventory
+app-inventory:
+  # Type of inventory - supported types: file, mysql
+  type: file
+  # Inventory file - only required for type == file
+  file:
 ...
