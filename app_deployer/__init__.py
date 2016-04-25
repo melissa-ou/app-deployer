@@ -3,7 +3,7 @@
 # Import built-in packages
 import os
 import sys
-from pkg_resources import resource_string
+from pkg_resources import resource_string, resource_filename
 
 # Import third-party packages
 import yaml
@@ -87,7 +87,7 @@ def load_app_inventory(type, file=None):
             # Establish a list of inventory dirs
             inventory_dirs = [
                 appdirs.user_config_dir("app-deployer"),  # User config dir
-                os.path.abspath(__file__)  # app_deployer module dir
+                os.path.abspath(os.getcwd())  # current working dir
             ]
             # Loop over inventory dirs
             for inventory_dir in inventory_dirs:
