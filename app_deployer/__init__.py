@@ -18,6 +18,17 @@ __version__ = 'v0.1.0'
 app_inventory_file = None
 
 
+def merge_dicts(source, destination):
+    for key, value in source.items():
+        if isinstance(value, dict):
+            # get node or create one
+            node = destination.setdefault(key, {})
+            merge_dicts(value, node)
+        else:
+            destination[key] = value
+    return destination
+
+
 # Load config data
 def load_config():
     """
@@ -28,7 +39,7 @@ def load_config():
     # Load default config
     #
     try:
-        default_config = yaml.load(resource_string('app_deployer', 'config.yml'))
+        config = yaml.load(resource_string('app_deployer', 'config.yml'))
     except Exception:
         print('Couldn\'t load default configuration data. Something went wrong with the '
               'installation.')
@@ -45,18 +56,18 @@ def load_config():
         with open(config_file) as f:
             user_config = yaml.load(f)
     except FileNotFoundError:
-        user_config = default_config
+        user_config = config
     except Exception:
         print('There was a problem reading {}'.format(config_file))
         sys.exit(1)
     # If the user config file is empty, set the config data equal to the default data
     if not user_config:
-        user_config = default_config
+        user_config = config
     # Override default values with the user-defined values
     try:
-        config = {**default_config, **user_config}
+        config = merge_dicts(user_config, config)
     except Exception:
-        config = default_config
+        config = config
     # Return the config dict
     return config
 
@@ -98,6 +109,7 @@ def load_app_inventory(type, file=None):
                     with open(file) as f:
                         app_inventory = yaml.load(f)
                         app_inventory_file = file
+                        break
                 except:
                     pass
     if not app_inventory:
