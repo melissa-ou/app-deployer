@@ -3,8 +3,8 @@ import sys
 import logging
 
 # Import modules from this app
-from .logging import setup_logging
-from .args import parse_args
+from app_deployer.logger import setup_logging
+from app_deployer.args import parse_args
 
 
 def main(argv=None):
