@@ -98,6 +98,7 @@ def load_app_inventory(type, file=None):
                     with open(file) as f:
                         app_inventory = yaml.load(f)
                         app_inventory_file = file
+                        break
                 except:
                     pass
     if not app_inventory:
