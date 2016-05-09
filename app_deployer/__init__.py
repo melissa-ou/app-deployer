@@ -3,7 +3,7 @@
 # Import built-in packages
 import os
 import sys
-from pkg_resources import resource_string, resource_filename
+from pkg_resources import resource_string
 
 # Import third-party packages
 import yaml
