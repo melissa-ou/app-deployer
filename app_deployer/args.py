@@ -1,27 +1,22 @@
 # Import built-in packages
 import sys
-import logging
 import argparse
 
-# Import CPC packages
-from app_deployer import config
 
-
-# Parse command-line arguments
-def parse_args(argv):
+def parse_args(argv, entry_point):
     """
     Parse the command line args
 
-    Note that the argv argument will be parsed instead of sys.argv because
-    the test suite will need to execute the main() function, and will
-    therefore need to pass the given arguments to that function, as opposed
-    to the main() function getting them from sys.argv.
+    Note that the argv argument will be parsed instead of sys.argv because the test suite will
+    need to execute the main() function, and will therefore need to pass the given arguments to
+    that function, as opposed to the main() function getting them from sys.argv.
 
     Parameters
     ----------
 
-    - argv - *list of strings* - argument list containing the elements from
-    sys.argv, except the first element (sys.argv[0]) which is the script name
+    - argv - *list of str* - argument list containing the elements from sys.argv, except the
+    first element (sys.argv[0]) which is the script name
+    - entry_point - *str* - name of the entry_point (in setup.py) to parse args for
     """
     # Create an ArgumentParser object
     parser = argparse.ArgumentParser(add_help=False, usage='%(prog)s [options] <app> <host>')
@@ -64,29 +59,3 @@ def parse_args(argv):
     args.log_level = args.log_level.upper()
 
     return args
-
-
-def main(argv=None):
-    # If argv is None, set it to sys.argv
-    if argv is None:
-        argv = sys.argv
-    # Setup logging
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s',
-        datefmt='%Y-%m-%d %I:%M:%S%p'
-    )
-    logger = logging.getLogger('app-deployer')
-
-    # --------------------------------------------------------------------------
-    # Parse command-line arguments
-    #
-    args = parse_args(argv[1:])
-    # Set log level
-    logger.setLevel(getattr(logging, args.log_level))
-
-    logger.info("This is the main function.")
-
-
-if __name__ == "__main__":
-    sys.exit(main())
