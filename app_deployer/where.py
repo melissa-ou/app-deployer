@@ -19,6 +19,10 @@ def list_apps(entry_point):
     for app in app_inventory:
         app_list += '  {}\n  {}\n\n'.format(app['name'], '-' * len(app['name']))
         app_list += '    git-url: {}\n'.format(app['git-url'])
-        app_list += '    install-file: {}\n\n'.format(app['install-file'])
+        app_list += '    install-file: {}\n'.format(app['install-file'])
+        app_list += '    owner: {}\n'.format(app['owner'])
+        app_list += '    backup owner: {}\n'.format(app['backup-owner'])
+        app_list += '    account: {}\n'.format(app['account'])
+        app_list += '\n'
     app_list = app_list[:-1]  # remove last newline
     return app_list
