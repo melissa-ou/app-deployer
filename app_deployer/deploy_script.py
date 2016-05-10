@@ -34,11 +34,12 @@ def main(argv=None):
         sys.exit()
 
     # ----------------------------------------------------------------------------------------------
-    # Validate the position args
+    # Validate the positional args
     #
     # App
-    print(app_inventory)
-
+    if not app_inventory.is_app(args.app_name):
+        logger.fatal('Can\'t {} {} - not found in the app inventory. Run {} --list-apps to print '
+                     'out the app inventory'.format(entry_point, args.app_name, entry_point))
 
 if __name__ == '__main__':
     sys.exit(main())

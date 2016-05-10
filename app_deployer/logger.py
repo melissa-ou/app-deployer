@@ -4,7 +4,8 @@ import sys
 
 
 class CustomFormatter(logging.Formatter):
-    default_fmt = logging.Formatter('[%(asctime)s - %(name)s - %(levelname)s] %(message)s')
+    # default_fmt = logging.Formatter('[%(asctime)s - %(name)s - %(levelname)s] %(message)s')
+    default_fmt = logging.Formatter('%(message)s')
     info_fmt = logging.Formatter('%(message)s')
 
     def __init__(self, fmt='%(message)s', datefmt='%Y-%m-%d %I:%M:%S%p'):
