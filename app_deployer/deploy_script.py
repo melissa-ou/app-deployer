@@ -29,6 +29,7 @@ def main(argv=None):
     #
     if args.list_apps:
         logger.info(where.list_apps(entry_point))
+        sys.exit()
 
 
 if __name__ == '__main__':
