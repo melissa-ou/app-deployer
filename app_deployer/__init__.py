@@ -9,6 +9,9 @@ from pkg_resources import resource_string
 import yaml
 import appdirs
 
+# Import from this app
+from app_deployer.apps import AppInventory
+
 
 __author__ = 'Mike Charles'
 __email__ = 'mike.charles@noaa.gov'
@@ -85,13 +88,13 @@ def load_app_inventory(type, file=None):
     - file - str - inventory file name - only needed when type=='file'
     """
     global app_inventory_file  # Will set this to the file that is successfully loaded
-    app_inventory = None
+    app_inventory_dict = None
     # File-based inventory
     if type == 'file':
         # Highest priority is a file specified in the config file
         if file:
             with open(file) as f:
-                app_inventory = yaml.load(f)
+                app_inventory_dict = yaml.load(f)
                 app_inventory_file = file
         # Otherwise try the lower-priority files
         else:
@@ -107,25 +110,26 @@ def load_app_inventory(type, file=None):
                 # Try to load the YAML file
                 try:
                     with open(file) as f:
-                        app_inventory = yaml.load(f)
+                        app_inventory_dict = yaml.load(f)
                         app_inventory_file = file
                         break
                 except:
                     pass
-    if not app_inventory:
+    if not app_inventory_dict:
         raise ValueError('Could not load an app inventory...')
-    return app_inventory
+    return app_inventory_dict
 
 
 # Load config
 config = load_config()
 
-# Load app inventory and save in where module
+# Load app inventory and save in apps module
 if 'file' in config['app-inventory']:
     file = config['app-inventory']['file']
 else:
     file = None
-app_inventory = load_app_inventory(config['app-inventory']['type'], file)
+app_inventory_dict = load_app_inventory(config['app-inventory']['type'], file)
+app_inventory = AppInventory(app_inventory_dict, app_inventory_file)
 
 # Save the name of the file that the app inventory was loaded from
 if config['app-inventory']['type'] == 'file':
