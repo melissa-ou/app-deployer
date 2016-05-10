@@ -43,17 +43,17 @@ class AppInventory:
         self.inventory_file = inventory_file
         """App inventory file"""
         # Create separate lists of each app's items
-        name_list = []
-        git_url_list = []
-        owner_list = []
-        backup_owner_list = []
-        account_list = []
+        self.name_list = []
+        self.git_url_list = []
+        self.owner_list = []
+        self.backup_owner_list = []
+        self.account_list = []
         for i in range(len(inventory_dict)):
-            name_list.append(inventory_dict[i]['name'])
-            git_url_list.append(inventory_dict[i]['git-url'])
-            owner_list.append(inventory_dict[i]['owner'])
-            backup_owner_list.append(inventory_dict[i]['backup-owner'])
-            account_list.append(inventory_dict[i]['account'])
+            self.name_list.append(inventory_dict[i]['name'])
+            self.git_url_list.append(inventory_dict[i]['git-url'])
+            self.owner_list.append(inventory_dict[i]['owner'])
+            self.backup_owner_list.append(inventory_dict[i]['backup-owner'])
+            self.account_list.append(inventory_dict[i]['account'])
 
     def __str__(self):
         string = '\n{:90}\n{:^90}\n{:90}\n\n'.format('=' * 90, 'App-Deployer App Inventory',
@@ -74,3 +74,18 @@ class AppInventory:
     def __repr__(self):
         return self.__str__()
 
+    def is_app(self, name):
+        """
+        Returns whether a given app name is found in the inventory
+
+        Parameters
+        ----------
+
+        - name - *str* - app name to check
+
+        Returns
+        -------
+
+        True if the given app is found in the inventory, otherwise False
+        """
+        return True if name in self.name_list else False
