@@ -5,7 +5,7 @@ import logging
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
-import app_deployer.where as where
+import app_deployer.hosts as where
 
 
 def main(argv=None):
