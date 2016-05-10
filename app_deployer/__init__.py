@@ -120,7 +120,7 @@ def load_app_inventory(type, file=None):
 # Load config
 config = load_config()
 
-# Load app inventory
+# Load app inventory and save in where module
 if 'file' in config['app-inventory']:
     file = config['app-inventory']['file']
 else:

@@ -8,6 +8,9 @@ from app_deployer.args import parse_args
 
 
 def main(argv=None):
+    # ----------------------------------------------------------------------------------------------
+    # Setup
+    #
     # Get entry_point name
     entry_point = __name__.split('.')[-1]
     # If argv is None, set it to sys.argv
