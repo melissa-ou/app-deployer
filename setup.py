@@ -49,8 +49,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'deploy = app_deployer.deploy:main',
-            'rollback = app_deployer.rollback:main',
+            'deploy = app_deployer.deploy_script:main',
+            'rollback = app_deployer.rollback_script:main',
         ]
     },
 )
