@@ -15,7 +15,7 @@ def main(argv=None):
     # Setup
     #
     # Get entry_point name
-    entry_point = __name__.split('.')[-1]
+    entry_point = __name__.split('.')[-1].split('_')[0]
     # If argv is None, set it to sys.argv
     if argv is None:
         argv = sys.argv
