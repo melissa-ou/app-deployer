@@ -5,7 +5,9 @@ import logging
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
-import app_deployer.hosts as where
+import app_deployer.hosts as hosts
+from app_deployer import app_inventory
+from app_deployer.apps import App
 
 
 def main(argv=None):
@@ -28,7 +30,7 @@ def main(argv=None):
     # Print out app inventory
     #
     if args.list_apps:
-        logger.info(where.list_apps(entry_point))
+        logger.info(app_inventory)
         sys.exit()
 
 
