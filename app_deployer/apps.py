@@ -2,6 +2,9 @@
 
 
 class App:
+    """
+    An App object containing various properties like a name, git URL, owner, etc.
+    """
     def __init__(self, name, git_url, owner, backup_owner, account):
         # Set attributes
         self.name = name
@@ -17,7 +20,23 @@ class App:
 
 
 class AppInventory:
+    """
+    An App Inventory object containing the inventory dictionary, and other properties like lists
+    of each of the possible app properties, a function to determine if a given app is in the
+    inventory, etc.
+    """
+
     def __init__(self, inventory_dict, inventory_file):
+        """
+        Returns an AppInventory object
+
+        Parameters
+        ----------
+
+        - inventory_dict - *dict* - inventory of apps (read in directly from a YAML app inventory
+          file
+        - inventory_file - *str* - the YAML file the app inventory was read in from
+        """
         # Set attributes
         self.inventory_dict = inventory_dict
         """App inventory dictionary"""
