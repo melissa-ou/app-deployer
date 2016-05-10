@@ -1,5 +1,5 @@
 # Import from this app
-from app_deployer import app_inventory
+from app_deployer import app_inventory, app_inventory_file
 
 
 def list_apps(entry_point):
@@ -11,9 +11,10 @@ def list_apps(entry_point):
         line = '=' * 25
     else:
         action = 'rolled back'
-        line =  '=' * 28
-    app_list = ''
-    app_list += '\nApps that can be {}\n'.format(action)
+        line = '=' * 28
+    app_list = '\n{:90}\n{:^90}\n{:90}\n\n'.format('=' * 90, 'App-Deployer App Inventory', '=' * 90)
+    app_list += 'App inventory file: {}\n\n'.format(app_inventory_file)
+    app_list += 'Apps that can be {}\n'.format(action)
     app_list += '{}\n\n'.format(line)
     for app in app_inventory:
         app_list += '  {}\n  {}\n\n'.format(app['name'], '-' * len(app['name']))
