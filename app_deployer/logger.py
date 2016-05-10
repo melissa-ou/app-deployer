@@ -25,10 +25,4 @@ def setup_logging(name):
     logging.root.addHandler(handler)
     logging.root.setLevel(logging.INFO)
 
-    # logging.basicConfig(
-    #     level=logging.DEBUG,
-    #     format='[%(asctime)s - %(name)s - %(levelname)s] %(message)s',
-    #     datefmt='%Y-%m-%d %I:%M:%S%p'
-    # )
-
     return logging.getLogger(name)
