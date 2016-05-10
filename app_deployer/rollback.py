@@ -5,6 +5,7 @@ import logging
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
+import app_deployer.where as where
 
 
 def main(argv=None):
@@ -23,7 +24,11 @@ def main(argv=None):
     # Set log level
     logger.setLevel(getattr(logging, args.log_level))
 
-    logger.info('This is the {} script...'.format(entry_point))
+    # ----------------------------------------------------------------------------------------------
+    # Print out app inventory
+    #
+    if args.list_apps:
+        logger.info(where.list_apps(entry_point))
 
 
 if __name__ == '__main__':
