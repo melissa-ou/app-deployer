@@ -23,9 +23,11 @@ def parse_args(argv, entry_point):
 
     # Add positional arguments
     parser.add_argument(
-        'app_name', metavar='app', type=str, nargs='?', help='app to deploy')
+        'app_name', metavar='app', type=str, nargs='?',
+        help='app to deploy' if entry_point == 'deploy' else 'app to rollback')
     parser.add_argument(
-        'host', metavar='host', type=str, nargs='?', help='host to deploy to')
+        'host', metavar='host', type=str, nargs='?',
+        help='host to deploy to' if entry_point == 'deploy' else 'host to rollback on')
 
     # Add a required argument group
     group = parser.add_argument_group('required arguments')
@@ -46,7 +48,8 @@ def parse_args(argv, entry_point):
                  "debug", "info", "warning", "error", "critical"])
     group.add_argument(
         '--list-apps', dest='list_apps', action='store_true',
-        help='list deployable apps - won\'t deploy or rollback anything')
+        help='list apps that can be deployed or rolled back - won\'t actually deploy or rollback '
+             'anything')
 
     # If less than 2 positional args are set, and no read-only args have been provided, print help
     # and exit, otherwise parse args (read-only args include things like --list-apps, which just
