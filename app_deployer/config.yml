@@ -6,4 +6,7 @@ app-inventory:
   type: file
   # Inventory file - only required for type == file
   file:
+# Ansible settings
+ansible:
+  path:
 ...
