@@ -2,12 +2,16 @@
 import sys
 import logging
 
+# Import third-party packages
+import appdirs
+
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
 import app_deployer.hosts as hosts
 from app_deployer import app_inventory
 from app_deployer.apps import App
+from app_deployer.deployment import get_ansible_exe
 
 
 def main(argv=None):
@@ -32,6 +36,16 @@ def main(argv=None):
     if args.list_apps:
         logger.info(app_inventory)
         sys.exit()
+
+    # ----------------------------------------------------------------------------------------------
+    # Make sure ansible is installed and can be executed
+    #
+    ansible_exe = get_ansible_exe()
+    if ansible_exe is None:
+        config_dir = appdirs.user_config_dir('app-deployer')
+        logger.fatal('ansible not found - please set ansible.bin-dir in {}/config.yml'.format(
+            config_dir))
+        sys.exit(1)
 
     # ----------------------------------------------------------------------------------------------
     # Validate the positional args
