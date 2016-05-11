@@ -8,10 +8,9 @@ import appdirs
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
-import app_deployer.hosts as hosts
-from app_deployer import app_inventory
-from app_deployer.apps import App
-from app_deployer.deployment import get_ansible_exe
+
+# Import variables from this app
+from app_deployer import app_inventory, ansible_exe, host_inventory
 
 
 def main(argv=None):
@@ -40,7 +39,6 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Make sure ansible is installed and can be executed
     #
-    ansible_exe = get_ansible_exe()
     if ansible_exe is None:
         config_dir = appdirs.user_config_dir('app-deployer')
         logger.fatal('ansible not found - please set ansible.bin-dir in {}/config.yml'.format(
@@ -54,6 +52,13 @@ def main(argv=None):
     if not app_inventory.is_app(args.app_name):
         logger.fatal('Can\'t {} {} - not found in the app inventory. Run {} --list-apps to print '
                      'out the app inventory'.format(entry_point, args.app_name, entry_point))
+        sys.exit(1)
+    # Host
+    if not host_inventory.is_host(args.host):
+        logger.fatal('{} is not a valid host - make sure it\'s defined in your inventory file - '
+                     'see Ansible documentation online'.format(args.host))
+        sys.exit(1)
+
 
 if __name__ == '__main__':
     sys.exit(main())

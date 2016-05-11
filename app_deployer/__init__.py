@@ -4,6 +4,7 @@
 import os
 import sys
 from pkg_resources import resource_string
+import subprocess
 
 # Import third-party packages
 import yaml
@@ -11,6 +12,7 @@ import appdirs
 
 # Import from this app
 from app_deployer.apps import AppInventory
+from app_deployer.hosts import HostInventory
 
 
 __author__ = 'Mike Charles'
@@ -120,6 +122,24 @@ def load_app_inventory(type, file=None):
     return app_inventory_dict
 
 
+def get_ansible_exe():
+    # Get directory from config file
+    if config['ansible'] is not None:
+        ansible_bin_dir = config['ansible']['path']
+    # Otherwise default to this entry_point's parent directory
+    else:
+        ansible_bin_dir = os.path.dirname(sys.argv[0])
+    # See if there's an ansible script in this dir
+    try:
+        subprocess.check_output(
+            '{}/ansible --version'.format(ansible_bin_dir),
+            stdin=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True)
+        return '{}/ansible'.format(ansible_bin_dir)
+    except subprocess.CalledProcessError:
+        return None
+
 # Load config
 config = load_config()
 
@@ -134,3 +154,9 @@ app_inventory = AppInventory(app_inventory_dict, app_inventory_file)
 # Save the name of the file that the app inventory was loaded from
 if config['app-inventory']['type'] == 'file':
     config['app-inventory']['file'] = app_inventory_file
+
+# Get the Ansible executable
+ansible_exe = get_ansible_exe()
+
+# Load the host inventory
+host_inventory = HostInventory(get_ansible_exe(), os.path.expandvars(config['hosts']['app-root']))
