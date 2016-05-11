@@ -8,9 +8,7 @@ import appdirs
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
-import app_deployer.hosts as hosts
 from app_deployer import app_inventory
-from app_deployer.apps import App
 from app_deployer.deployment import get_ansible_exe
 
 
