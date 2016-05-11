@@ -54,6 +54,7 @@ def main(argv=None):
     if not app_inventory.is_app(args.app_name):
         logger.fatal('Can\'t {} {} - not found in the app inventory. Run {} --list-apps to print '
                      'out the app inventory'.format(entry_point, args.app_name, entry_point))
+        sys.exit(1)
 
 if __name__ == '__main__':
     sys.exit(main())
