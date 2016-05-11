@@ -38,7 +38,6 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Make sure ansible is installed and can be executed
     #
-    ansible_exe = get_ansible_exe()
     if ansible_exe is None:
         config_dir = appdirs.user_config_dir('app-deployer')
         logger.fatal('ansible not found - please set ansible.bin-dir in {}/config.yml'.format(
