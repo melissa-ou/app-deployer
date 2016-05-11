@@ -8,8 +8,9 @@ import appdirs
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
-from app_deployer import app_inventory
-from app_deployer.deployment import get_ansible_exe
+
+# Import variables from this app
+from app_deployer import app_inventory, ansible_exe, host_inventory
 
 
 def main(argv=None):
@@ -52,6 +53,12 @@ def main(argv=None):
         logger.fatal('Can\'t {} {} - not found in the app inventory. Run {} --list-apps to print '
                      'out the app inventory'.format(entry_point, args.app_name, entry_point))
         sys.exit(1)
+    # Host
+    if not host_inventory.is_host(args.host):
+        logger.fatal('{} is not a valid host - make sure it\'s defined in your inventory file - '
+                     'see Ansible documentation online'.format(args.host))
+        sys.exit(1)
+
 
 if __name__ == '__main__':
     sys.exit(main())

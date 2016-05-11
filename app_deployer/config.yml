@@ -9,4 +9,7 @@ app-inventory:
 # Ansible settings
 ansible:
   path:
+# Host settings
+hosts:
+  app-root: $HOME/apps
 ...

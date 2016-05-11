@@ -12,6 +12,7 @@ import appdirs
 
 # Import from this app
 from app_deployer.apps import AppInventory
+from app_deployer.hosts import HostInventory
 
 
 __author__ = 'Mike Charles'
@@ -153,3 +154,9 @@ app_inventory = AppInventory(app_inventory_dict, app_inventory_file)
 # Save the name of the file that the app inventory was loaded from
 if config['app-inventory']['type'] == 'file':
     config['app-inventory']['file'] = app_inventory_file
+
+# Get the Ansible executable
+ansible_exe = get_ansible_exe()
+
+# Load the host inventory
+host_inventory = HostInventory(get_ansible_exe(), os.path.expandvars(config['hosts']['app-root']))
