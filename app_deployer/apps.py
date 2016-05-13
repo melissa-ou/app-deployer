@@ -1,6 +1,11 @@
 # Import from this app
 
 
+class AppError(Exception):
+    def __init__(self, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
+
+
 class App:
     """
     An App object containing various properties like a name, git URL, owner, etc.
