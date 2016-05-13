@@ -89,6 +89,28 @@ class AppInventory:
 
         return string
 
+    def get_dict(self, name):
+        """
+        Returns a dictionary of all attributes of a given app
+
+        Parameters
+        ----------
+
+        - name - *str* - name of app
+
+        Returns
+        -------
+
+        *dict* - dictionary of all attributes of the app
+        """
+        # Make sure this name matches an app in the inventory
+        if not self.is_app(name):
+            raise AppError('Cannot find an app matching the name {}'.format(name))
+        # Find the dictionary where the key 'name' matches the given name
+        app_dict = next(item for item in self.inventory_dict if item['name'] == name)
+
+        return app_dict
+
     def __repr__(self):
         return self.__str__()
 
