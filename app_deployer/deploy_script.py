@@ -41,7 +41,7 @@ def main(argv=None):
     #
     if ansible_exe is None:
         config_dir = appdirs.user_config_dir('app-deployer')
-        logger.fatal('ansible not found - please set ansible.bin-dir in {}/config.yml'.format(
+        logger.fatal('ansible not found - please set ansible.path in {}/config.yml'.format(
             config_dir))
         sys.exit(1)
 
@@ -58,6 +58,11 @@ def main(argv=None):
         logger.fatal('{} is not a valid host - make sure it\'s defined in your inventory file - '
                      'see Ansible documentation online'.format(args.host))
         sys.exit(1)
+
+    # ----------------------------------------------------------------------------------------------
+    # Create an App instance
+    #
+    app = app_inventory.get_app(args.app_name)
 
 
 if __name__ == '__main__':

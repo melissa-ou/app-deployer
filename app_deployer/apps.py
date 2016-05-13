@@ -1,6 +1,11 @@
 # Import from this app
 
 
+class AppError(Exception):
+    def __init__(self, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
+
+
 class App:
     """
     An App object containing various properties like a name, git URL, owner, etc.
@@ -17,6 +22,19 @@ class App:
         """App backup owner"""
         self.account = account
         """Account the app should be installed to"""
+
+    def __str__(self):
+        string = ''
+        string += 'name: {}\n'.format(self.name)
+        string += 'git-url: {}\n'.format(self.git_url)
+        string += 'owner: {}\n'.format(self.owner)
+        string += 'backup owner: {}\n'.format(self.backup_owner)
+        string += 'account: {}\n'.format(self.account)
+
+        return string
+
+    def __repr__(self):
+        return self.__str__()
 
 
 class AppInventory:
@@ -71,6 +89,28 @@ class AppInventory:
 
         return string
 
+    def get_dict(self, name):
+        """
+        Returns a dictionary of all attributes of a given app
+
+        Parameters
+        ----------
+
+        - name - *str* - name of app
+
+        Returns
+        -------
+
+        *dict* - dictionary of all attributes of the app
+        """
+        # Make sure this name matches an app in the inventory
+        if not self.is_app(name):
+            raise AppError('Cannot find an app matching the name {}'.format(name))
+        # Find the dictionary where the key 'name' matches the given name
+        app_dict = next(item for item in self.inventory_dict if item['name'] == name)
+
+        return app_dict
+
     def __repr__(self):
         return self.__str__()
 
@@ -89,3 +129,28 @@ class AppInventory:
         True if the given app is found in the inventory, otherwise False
         """
         return True if name in self.name_list else False
+
+    def get_app(self, name):
+        """
+        Returns an App instance created from the app with the given name
+
+        Parameters
+        ----------
+
+        - name - *str* - app name
+
+        Returns
+        -------
+
+        App instance
+        """
+        # Make sure this name matches an app in the inventory
+        if not self.is_app(name):
+            raise AppError('Cannot find an app matching the name {}'.format(name))
+        # Get all attributes of the app in a dictionary
+        app_dict = self.get_dict(name)
+        # Create an instance of the app
+        app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['backup-owner'],
+                  app_dict['account'])
+
+        return app
