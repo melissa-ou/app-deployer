@@ -23,6 +23,19 @@ class App:
         self.account = account
         """Account the app should be installed to"""
 
+    def __str__(self):
+        string = ''
+        string += 'name: {}\n'.format(self.name)
+        string += 'git-url: {}\n'.format(self.git_url)
+        string += 'owner: {}\n'.format(self.owner)
+        string += 'backup owner: {}\n'.format(self.backup_owner)
+        string += 'account: {}\n'.format(self.account)
+
+        return string
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class AppInventory:
     """
