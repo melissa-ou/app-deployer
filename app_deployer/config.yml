@@ -8,8 +8,10 @@ app-inventory:
   file:
 # Ansible settings
 ansible:
+  # Path containing Ansible executables
   path:
 # Host settings
 hosts:
+  # Root directory to install apps into
   app-root: $HOME/apps
 ...
