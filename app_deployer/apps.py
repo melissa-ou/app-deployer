@@ -10,7 +10,7 @@ class App:
     """
     An App object containing various properties like a name, git URL, owner, etc.
     """
-    def __init__(self, name, git_url, owner, backup_owner, account):
+    def __init__(self, name, git_url, owner, backup_owner, account, install_method):
         # Set attributes
         self.name = name
         """Name of the app"""
@@ -22,6 +22,8 @@ class App:
         """App backup owner"""
         self.account = account
         """Account the app should be installed to"""
+        self.install_method = install_method
+        """Install method"""
 
     def __str__(self):
         string = ''
@@ -30,6 +32,7 @@ class App:
         string += 'owner: {}\n'.format(self.owner)
         string += 'backup owner: {}\n'.format(self.backup_owner)
         string += 'account: {}\n'.format(self.account)
+        string += 'install method: {}\n'.format(self.install_method)
 
         return string
 
@@ -66,12 +69,14 @@ class AppInventory:
         self.owner_list = []
         self.backup_owner_list = []
         self.account_list = []
+        self.install_method_list = []
         for i in range(len(inventory_dict)):
             self.name_list.append(inventory_dict[i]['name'])
             self.git_url_list.append(inventory_dict[i]['git-url'])
             self.owner_list.append(inventory_dict[i]['owner'])
             self.backup_owner_list.append(inventory_dict[i]['backup-owner'])
             self.account_list.append(inventory_dict[i]['account'])
+            self.install_method_list.append(inventory_dict[i]['install-method'])
 
     def __str__(self):
         string = '\n{:90}\n{:^90}\n{:90}\n\n'.format('=' * 90, 'App-Deployer App Inventory',
@@ -83,6 +88,7 @@ class AppInventory:
             string += '    owner: {}\n'.format(app['owner'])
             string += '    backup owner: {}\n'.format(app['backup-owner'])
             string += '    account: {}\n'.format(app['account'])
+            string += '    install method: {}\n'.format(app['install-method'])
             string += '\n'
         string += 'App inventory file: {}\n\n'.format(self.inventory_file)
         string = string[:-1]  # remove last newline
@@ -151,6 +157,6 @@ class AppInventory:
         app_dict = self.get_dict(name)
         # Create an instance of the app
         app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['backup-owner'],
-                  app_dict['account'])
+                  app_dict['account'], app_dict['install-method'])
 
         return app
