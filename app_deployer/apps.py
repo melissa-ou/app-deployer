@@ -61,7 +61,7 @@ class AppInventory:
         for app in self.inventory_dict:
             string += '  {}\n  {}\n\n'.format(app['name'], '-' * len(app['name']))
             string += '    git-url: {}\n'.format(app['git-url'])
-            string += '    install-file: {}\n'.format(app['install-file'])
+            string += '    install-method: {}\n'.format(app['install-method'])
             string += '    owner: {}\n'.format(app['owner'])
             string += '    backup owner: {}\n'.format(app['backup-owner'])
             string += '    account: {}\n'.format(app['account'])
