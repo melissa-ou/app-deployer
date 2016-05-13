@@ -8,6 +8,7 @@ import appdirs
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args import parse_args
+from app_deployer.deployment import DeploymentError, Deployment
 
 # Import variables from this app
 from app_deployer import app_inventory, ansible_exe, host_inventory
@@ -63,6 +64,11 @@ def main(argv=None):
     # Create an App instance
     #
     app = app_inventory.get_app(args.app_name)
+
+    # ----------------------------------------------------------------------------------------------
+    # Deploy the app
+    #
+    deployment = Deployment(app, args.host, app.install_method)
 
 
 if __name__ == '__main__':
