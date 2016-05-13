@@ -2,7 +2,7 @@
 ---
 - name: app-deployer
   git-url: https://github.com/noaa-nws-cpc/app-deployer.git
-  install-file: ansible/install.yml
+  install-method: ansible
   owner: Mike Charles
   backup-owner:
   account: cpcwebapps
