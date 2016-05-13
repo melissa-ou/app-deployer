@@ -59,6 +59,11 @@ def main(argv=None):
                      'see Ansible documentation online'.format(args.host))
         sys.exit(1)
 
+    # ----------------------------------------------------------------------------------------------
+    # Create an App instance
+    #
+    app = app_inventory.get_app(args.app_name)
+
 
 if __name__ == '__main__':
     sys.exit(main())
