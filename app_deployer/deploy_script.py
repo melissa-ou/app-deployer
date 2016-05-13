@@ -41,7 +41,7 @@ def main(argv=None):
     #
     if ansible_exe is None:
         config_dir = appdirs.user_config_dir('app-deployer')
-        logger.fatal('ansible not found - please set ansible.bin-dir in {}/config.yml'.format(
+        logger.fatal('ansible not found - please set ansible.path in {}/config.yml'.format(
             config_dir))
         sys.exit(1)
 
