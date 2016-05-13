@@ -129,3 +129,28 @@ class AppInventory:
         True if the given app is found in the inventory, otherwise False
         """
         return True if name in self.name_list else False
+
+    def get_app(self, name):
+        """
+        Returns an App instance created from the app with the given name
+
+        Parameters
+        ----------
+
+        - name - *str* - app name
+
+        Returns
+        -------
+
+        App instance
+        """
+        # Make sure this name matches an app in the inventory
+        if not self.is_app(name):
+            raise AppError('Cannot find an app matching the name {}'.format(name))
+        # Get all attributes of the app in a dictionary
+        app_dict = self.get_dict(name)
+        # Create an instance of the app
+        app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['backup-owner'],
+                  app_dict['account'])
+
+        return app
