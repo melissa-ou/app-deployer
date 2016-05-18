@@ -69,6 +69,7 @@ def main(argv=None):
     # Deploy the app
     #
     deployment = Deployment(app, args.host, app.install_method)
+    deployment.execute()
 
 
 if __name__ == '__main__':

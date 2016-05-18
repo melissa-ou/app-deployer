@@ -10,7 +10,7 @@ class App:
     """
     An App object containing various properties like a name, git URL, owner, etc.
     """
-    def __init__(self, name, git_url, owner, backup_owner, account, install_method):
+    def __init__(self, name, git_url, owner, install_method, backup_owner=None, account=None):
         # Set attributes
         self.name = name
         """Name of the app"""
@@ -18,21 +18,21 @@ class App:
         """Git URL"""
         self.owner = owner
         """App owner"""
+        self.install_method = install_method
+        """Install method"""
         self.backup_owner = backup_owner
         """App backup owner"""
         self.account = account
         """Account the app should be installed to"""
-        self.install_method = install_method
-        """Install method"""
 
     def __str__(self):
         string = ''
         string += 'name: {}\n'.format(self.name)
         string += 'git-url: {}\n'.format(self.git_url)
         string += 'owner: {}\n'.format(self.owner)
+        string += 'install method: {}\n'.format(self.install_method)
         string += 'backup owner: {}\n'.format(self.backup_owner)
         string += 'account: {}\n'.format(self.account)
-        string += 'install method: {}\n'.format(self.install_method)
 
         return string
 
@@ -67,28 +67,30 @@ class AppInventory:
         self.name_list = []
         self.git_url_list = []
         self.owner_list = []
+        self.install_method_list = []
         self.backup_owner_list = []
         self.account_list = []
-        self.install_method_list = []
         for i in range(len(inventory_dict)):
-            self.name_list.append(inventory_dict[i]['name'])
-            self.git_url_list.append(inventory_dict[i]['git-url'])
-            self.owner_list.append(inventory_dict[i]['owner'])
-            self.backup_owner_list.append(inventory_dict[i]['backup-owner'])
-            self.account_list.append(inventory_dict[i]['account'])
-            self.install_method_list.append(inventory_dict[i]['install-method'])
+            self.name_list.append(inventory_dict[i].get('name'))
+            self.git_url_list.append(inventory_dict[i].get('git-url'))
+            self.owner_list.append(inventory_dict[i].get('owner'))
+            self.install_method_list.append(inventory_dict[i].get('install-method'))
+            self.backup_owner_list.append(inventory_dict[i].get('backup-owner', None))
+            self.account_list.append(inventory_dict[i].get('account', None))
 
     def __str__(self):
         string = '\n{:90}\n{:^90}\n{:90}\n\n'.format('=' * 90, 'App-Deployer App Inventory',
-                                                       '=' * 90)
+                                                     '=' * 90)
         for app in self.inventory_dict:
+            backup_owner = 'None' if 'backup-owner' not in app else app['backup-owner']
+            account = 'None' if 'account' not in app else app['account']
             string += '  {}\n  {}\n\n'.format(app['name'], '-' * len(app['name']))
             string += '    git-url: {}\n'.format(app['git-url'])
             string += '    install-method: {}\n'.format(app['install-method'])
             string += '    owner: {}\n'.format(app['owner'])
-            string += '    backup owner: {}\n'.format(app['backup-owner'])
-            string += '    account: {}\n'.format(app['account'])
             string += '    install method: {}\n'.format(app['install-method'])
+            string += '    backup owner: {}\n'.format(backup_owner)
+            string += '    account: {}\n'.format(account)
             string += '\n'
         string += 'App inventory file: {}\n\n'.format(self.inventory_file)
         string = string[:-1]  # remove last newline
@@ -156,7 +158,7 @@ class AppInventory:
         # Get all attributes of the app in a dictionary
         app_dict = self.get_dict(name)
         # Create an instance of the app
-        app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['backup-owner'],
-                  app_dict['account'], app_dict['install-method'])
+        app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['install-method'],
+                  backup_owner=app_dict['backup-owner'], account=app_dict['account'])
 
         return app
