@@ -50,11 +50,15 @@ def parse_args(argv, entry_point):
         '--list-apps', dest='list_apps', action='store_true',
         help='list apps that can be deployed or rolled back - won\'t actually deploy or rollback '
              'anything')
+    group.add_argument(
+        '--list-hosts', dest='list_hosts', action='store_true',
+        help='list hosts that apps can be deployed to or rolled back on - won\'t actually deploy '
+             'or rollback anything')
 
     # If less than 2 positional args are set, and no read-only args have been provided, print help
     # and exit, otherwise parse args (read-only args include things like --list-apps, which just
     # lists deployable apps and then exits)
-    read_only_args = ['--list-apps']
+    read_only_args = ['--list-apps', '--list-hosts']
     if len(argv) < 2 and not list(set(argv) & set(read_only_args)):
         parser.print_help()
         sys.exit()
