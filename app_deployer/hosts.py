@@ -46,7 +46,6 @@ class HostInventory:
                                                      '=' * 90)
         for host in self.host_list:
             string += '  - {}\n'.format(host)
-        string = string[:-1]  # remove last newline
 
         return string
 
