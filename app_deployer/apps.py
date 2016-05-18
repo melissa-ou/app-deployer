@@ -159,6 +159,7 @@ class AppInventory:
         app_dict = self.get_dict(name)
         # Create an instance of the app
         app = App(name, app_dict['git-url'], app_dict['owner'], app_dict['install-method'],
-                  backup_owner=app_dict['backup-owner'], account=app_dict['account'])
+                  backup_owner=app_dict.get('backup-owner', None),
+                  account=app_dict.get('account', None))
 
         return app
