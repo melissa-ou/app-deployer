@@ -16,7 +16,10 @@ with open('CHANGELOG.md') as history_file:
 
 requirements = [
     'pyyaml',
-    'appdirs'
+    'appdirs',
+    'gitpython',
+    'coloredlogs',
+    'colorama',
 ]
 
 setup(

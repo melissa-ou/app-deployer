@@ -4,6 +4,7 @@ import logging
 
 # Import third-party packages
 import appdirs
+import coloredlogs
 
 # Import modules from this app
 from app_deployer.logger import setup_logging
@@ -28,6 +29,7 @@ def main(argv=None):
     args = parse_args(argv[1:], entry_point)
     # Set log level
     logger.setLevel(getattr(logging, args.log_level))
+    coloredlogs.install(fmt='%(message)s')
 
     # ----------------------------------------------------------------------------------------------
     # Print out app inventory
