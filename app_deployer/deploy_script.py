@@ -38,6 +38,13 @@ def main(argv=None):
         sys.exit()
 
     # ----------------------------------------------------------------------------------------------
+    # Print out hosts inventory
+    #
+    if args.list_hosts:
+        logger.info(host_inventory)
+        sys.exit()
+
+    # ----------------------------------------------------------------------------------------------
     # Make sure ansible is installed and can be executed
     #
     if ansible_exe is None:
@@ -69,6 +76,7 @@ def main(argv=None):
     # Deploy the app
     #
     deployment = Deployment(app, args.host, app.install_method)
+    deployment.execute()
 
 
 if __name__ == '__main__':

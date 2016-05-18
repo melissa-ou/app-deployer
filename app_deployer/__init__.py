@@ -88,6 +88,11 @@ def load_app_inventory(type, file=None):
 
     - type - str - type of inventory ('file' [default] or 'mysql')
     - file - str - inventory file name - only needed when type=='file'
+
+    Returns
+    -------
+
+    dict - dictionary containing the app inventory
     """
     global app_inventory_file  # Will set this to the file that is successfully loaded
     app_inventory_dict = None
