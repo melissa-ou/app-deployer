@@ -9,6 +9,7 @@ import coloredlogs
 # Import modules from this app
 from app_deployer.logger import setup_logging
 from app_deployer.args_parser import parse_args
+from app_deployer import args_parser
 
 # Import variables from this app
 from app_deployer import app_inventory, ansible_exe, host_inventory
@@ -26,7 +27,8 @@ def main(argv=None):
     # Setup logging
     logger = setup_logging(entry_point)
     # Parse command-line arguments
-    args = parse_args(argv[1:], entry_point)
+    args_parser.args = parse_args(argv[1:], entry_point)
+    args = args_parser.args
     # Set log level
     logger.setLevel(getattr(logging, args.log_level))
     coloredlogs.install(fmt='%(message)s')
