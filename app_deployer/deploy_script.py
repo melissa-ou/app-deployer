@@ -8,7 +8,7 @@ import coloredlogs
 
 # Import modules from this app
 from app_deployer.logger import setup_logging
-from app_deployer.args import parse_args
+from app_deployer.args_parser import parse_args
 from app_deployer.deployment import DeploymentError, Deployment
 
 # Import variables from this app
@@ -27,7 +27,6 @@ def main(argv=None):
     # Setup logging
     logger = setup_logging(entry_point)
     # Parse command-line arguments
-    args = parse_args(argv[1:], entry_point)
     # Set log level
     logger.setLevel(getattr(logging, args.log_level))
     coloredlogs.install(fmt='%(message)s')
@@ -35,14 +34,14 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Print out app inventory
     #
-    if args.list_apps:
+    if args_parser.list_apps:
         logger.info(app_inventory)
         sys.exit()
 
     # ----------------------------------------------------------------------------------------------
     # Print out hosts inventory
     #
-    if args.list_hosts:
+    if args_parser.list_hosts:
         logger.info(host_inventory)
         sys.exit()
 
@@ -59,25 +58,25 @@ def main(argv=None):
     # Validate the positional args
     #
     # App
-    if not app_inventory.is_app(args.app_name):
+    if not app_inventory.is_app(args_parser.app_name):
         logger.fatal('Can\'t {} {} - not found in the app inventory. Run {} --list-apps to print '
-                     'out the app inventory'.format(entry_point, args.app_name, entry_point))
+                     'out the app inventory'.format(entry_point, args_parser.app_name, entry_point))
         sys.exit(1)
     # Host
-    if not host_inventory.is_host(args.host):
+    if not host_inventory.is_host(args_parser.host):
         logger.fatal('{} is not a valid host - make sure it\'s defined in your inventory file - '
-                     'see Ansible documentation online'.format(args.host))
+                     'see Ansible documentation online'.format(args_parser.host))
         sys.exit(1)
 
     # ----------------------------------------------------------------------------------------------
     # Create an App instance
     #
-    app = app_inventory.get_app(args.app_name)
+    app = app_inventory.get_app(args_parser.app_name)
 
     # ----------------------------------------------------------------------------------------------
     # Deploy the app
     #
-    deployment = Deployment(app, args.host, app.install_method)
+    deployment = Deployment(app, args_parser.host, app.install_method)
     deployment.execute()
 
 

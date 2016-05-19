@@ -8,7 +8,7 @@ import coloredlogs
 
 # Import modules from this app
 from app_deployer.logger import setup_logging
-from app_deployer.args import parse_args
+from app_deployer.args_parser import parse_args
 
 # Import variables from this app
 from app_deployer import app_inventory, ansible_exe, host_inventory

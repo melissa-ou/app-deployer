@@ -3,6 +3,10 @@ import sys
 import argparse
 
 
+# args variable will be imported by other modules to access the command line args
+args = None
+
+
 def parse_args(argv, entry_point):
     """
     Parse the command line args
