@@ -3,6 +3,10 @@ import sys
 import argparse
 
 
+# args variable will be imported by other modules to access the command line args
+args = None
+
+
 def parse_args(argv, entry_point):
     """
     Parse the command line args
@@ -17,6 +21,11 @@ def parse_args(argv, entry_point):
     - argv - *list of str* - argument list containing the elements from sys.argv, except the
     first element (sys.argv[0]) which is the script name
     - entry_point - *str* - name of the entry_point (in setup.py) to parse args for
+
+    Returns
+    -------
+
+    - *ArgumentParser object* - parsed arguments
     """
     # Create an ArgumentParser object
     parser = argparse.ArgumentParser(add_help=False, usage='%(prog)s [options] <app> <host>')

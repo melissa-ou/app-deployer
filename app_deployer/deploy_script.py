@@ -4,10 +4,12 @@ import logging
 
 # Import third-party packages
 import appdirs
+import coloredlogs
 
 # Import modules from this app
 from app_deployer.logger import setup_logging
-from app_deployer.args import parse_args
+from app_deployer.args_parser import parse_args
+from app_deployer import args_parser
 from app_deployer.deployment import DeploymentError, Deployment
 
 # Import variables from this app
@@ -26,9 +28,11 @@ def main(argv=None):
     # Setup logging
     logger = setup_logging(entry_point)
     # Parse command-line arguments
-    args = parse_args(argv[1:], entry_point)
+    args_parser.args = parse_args(argv[1:], entry_point)
+    args = args_parser.args
     # Set log level
     logger.setLevel(getattr(logging, args.log_level))
+    coloredlogs.install(fmt='%(message)s')
 
     # ----------------------------------------------------------------------------------------------
     # Print out app inventory
