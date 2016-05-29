@@ -1,6 +1,8 @@
+machine:
+  python:
+    version: 3.5
 test:
-  override:
-    - py.test
-dependencies:
   pre:
     - pip install pytest
+  override:
+    - py.test
