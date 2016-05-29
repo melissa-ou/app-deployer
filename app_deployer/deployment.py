@@ -62,4 +62,3 @@ class Deployment:
                 'must be set to either \'ansible\' or \'make\''.format(self.app.name,
                                                                        self.install_method)
             )
-        logger.debug('DEBUG!')

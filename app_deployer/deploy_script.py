@@ -8,7 +8,6 @@ import appdirs
 import coloredlogs
 
 # Import modules from this app
-from app_deployer.logger import setup_logging
 from app_deployer.deployment import DeploymentError, Deployment
 
 # Import variables from this app
@@ -99,7 +98,7 @@ def main(argv=None):
     args = parse_args(argv[1:])
     # Setup logging
     logging.basicConfig(level=args.log_level)  # set log level for root logger
-    logger = setup_logging('app_deployer')  # get instance of logger
+    logger = logging.getLogger('app_deployer')  # get instance of logger
     coloredlogs.install(fmt='%(message)s')  # colorize logging output
 
     # ----------------------------------------------------------------------------------------------
