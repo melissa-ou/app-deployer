@@ -8,7 +8,6 @@ import appdirs
 import coloredlogs
 
 # Import modules from this app
-from app_deployer.logger import setup_logging
 
 # Import variables from this app
 from app_deployer import app_inventory, ansible_exe, host_inventory
