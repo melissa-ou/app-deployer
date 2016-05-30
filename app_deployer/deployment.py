@@ -1,6 +1,9 @@
 # Import built-in packages
 import logging
 
+# Import packages from this app
+from .templates import render_templates
+
 
 # Get the logger
 logger = logging.getLogger(__name__)
@@ -65,6 +68,12 @@ class Deployment:
         elif self.install_method == 'make':
             logger.info('Deploying {} to {} using {}...'.format(self.app.name, self.host,
                                                                 self.install_method))
+            templ_vars = {
+                'app-name': self.app.name
+            }
+            render_templates('{}/{}'.format(self.local_templ_dir, self.install_method),
+                             '{}/ansible-templates'.format(self.local_work_dir),
+                             templ_vars=templ_vars)
         else:
             return DeploymentError(
                 'The install method for the app {} is set to {}, which is not a valid option - it '
