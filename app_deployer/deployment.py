@@ -19,7 +19,7 @@ class Deployment:
     A class containing methods for actually deploying the app
     """
 
-    def __init__(self, app, host, install_method):
+    def __init__(self, app, host, install_method, local_templ_dir='.', local_work_dir='.'):
         """
         Returns Deployment object
 
@@ -29,6 +29,10 @@ class Deployment:
         - app - *App* - App instance to deploy
         - host - *Host* - Host instance to deploy to
         - install_method - *str* - method for installing the app
+        - local_templ_dir - *str* - local (on Ansible host machine) dir containing templates
+          (optional)
+        - local_work_dir = *str* - local (on Ansible host machine) temp working dir for templates,
+          etc. (optional)
         """
         # Set attributes
         self.app = app
@@ -37,12 +41,17 @@ class Deployment:
         """Host to deploy to"""
         self.install_method = install_method
         """Install method"""
+        self.local_templ_dir = local_templ_dir
+        """Local templates directory"""
+        self.local_work_dir = local_work_dir
+        """Local working directory"""
 
     def __str__(self):
         string = ''
         string += 'app: {}\n'.format(self.app.name)
         string += 'host: {}\n'.format(self.host)
         string += 'install method: {}\n'.format(self.install_method)
+        string += 'work dir: {}\n'.format(self.work_dir)
 
         return string
 
