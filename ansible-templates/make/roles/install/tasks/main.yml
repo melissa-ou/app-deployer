@@ -1,0 +1,4 @@
+---
+- name: Install application using `make install`
+  command: make install
+...

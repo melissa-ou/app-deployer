@@ -1,0 +1,27 @@
+# Ansistrano deployment playbook
+---
+  # ------------------------------------------------------------------------------------------------
+  # Hosts to deploy to (set to all if you want to be able to just limit installation to specific
+  # hosts using the `--limit` arg to `ansible-playbook`.
+  #
+  - hosts: all
+    # ----------------------------------------------------------------------------------------------
+    # Variables
+    #
+    vars:
+      ansistrano_allow_anonymous_stats: false
+      ansistrano_deploy_via: rsync
+      ansistrano_deploy_from: "{{ playbook_dir }}/.."
+      ansistrano_deploy_to: "{{ app_root }}/{{ app_name }}"
+      ansistrano_keep_releases: 10
+    # ----------------------------------------------------------------------------------------------
+    # Ansible roles
+    #
+    # One or more roles may be from Ansible Galaxy (ansible-galaxy install <user.role>)
+    #
+    roles:
+      # Ansistrano deployment role
+      - role: carlosbuenosvinos.ansistrano-deploy
+      # Installation
+      - role: install
+...
