@@ -17,7 +17,6 @@ def render_templates(in_dir, out_dir, templ_vars):
             in_file = os.path.join(dirpath, filename)
             in_file = re.sub(r'^{}/'.format(in_dir), '', in_file)
             out_file = '{}/{}'.format(out_dir, in_file)
-            print('Rendering {} -> {}'.format(in_file, out_file))
             # Create out_file path
             os.makedirs(os.path.dirname(out_file), exist_ok=True)
             # continue
