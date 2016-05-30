@@ -1,7 +1,9 @@
 # Import built-in packages
+import os
 import sys
 import logging
 import argparse
+from tempfile import mkdtemp
 
 # Import third-party packages
 import appdirs
@@ -89,6 +91,11 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Setup
     #
+    # Get script dir
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    # Create a temporary work directory
+    #
+    work_dir = mkdtemp(prefix='app-deployer-')
     # Get entry_point name
     entry_point = __name__.split('.')[-1].split('_')[0]
     # If argv is None, set it to sys.argv
