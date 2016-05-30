@@ -94,7 +94,6 @@ def main(argv=None):
     # Get script dir
     script_dir = os.path.dirname(os.path.realpath(__file__))
     # Create a temporary work directory
-    #
     work_dir = mkdtemp(prefix='app-deployer-')
     # Get entry_point name
     entry_point = __name__.split('.')[-1].split('_')[0]
