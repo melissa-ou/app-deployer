@@ -1,6 +1,7 @@
 # Import built-in packages
 import os
 import sys
+import shutil
 import logging
 import argparse
 from tempfile import mkdtemp
@@ -156,6 +157,13 @@ def main(argv=None):
                             local_templ_dir='{}/../ansible-templates'.format(script_dir),
                             local_work_dir=work_dir)
     deployment.execute()
+
+    # ----------------------------------------------------------------------------------------------
+    # Cleanup
+    #
+    # Remove work dir
+    os.chdir(os.path.expanduser('~'))
+    shutil.rmtree(work_dir)
 
 
 if __name__ == '__main__':
