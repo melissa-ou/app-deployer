@@ -104,9 +104,8 @@ def main(argv=None):
     # Parse command-line arguments
     args = parse_args(argv[1:])
     # Setup logging
-    logging.basicConfig(level=args.log_level)  # set log level for root logger
     logger = logging.getLogger('app_deployer')  # get instance of logger
-    coloredlogs.install(fmt='%(message)s')  # colorize logging output
+    coloredlogs.install(fmt='%(message)s', level=args.log_level)  # colorize logging output
 
     # ----------------------------------------------------------------------------------------------
     # Print out app inventory
