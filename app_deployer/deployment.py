@@ -54,7 +54,8 @@ class Deployment:
         string += 'app: {}\n'.format(self.app.name)
         string += 'host: {}\n'.format(self.host)
         string += 'install method: {}\n'.format(self.install_method)
-        string += 'work dir: {}\n'.format(self.work_dir)
+        string += 'local template dir: {}\n'.format(self.local_template_dir)
+        string += 'local work dir: {}\n'.format(self.local_work_dir)
 
         return string
 
