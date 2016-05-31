@@ -22,7 +22,7 @@ class Deployment:
     A class containing methods for actually deploying the app
     """
 
-    def __init__(self, app, host, install_method, local_templ_dir='.', local_work_dir='.'):
+    def __init__(self, app, host, install_method, local_template_dir='.', local_work_dir='.'):
         """
         Returns Deployment object
 
@@ -32,7 +32,7 @@ class Deployment:
         - app - *App* - App instance to deploy
         - host - *Host* - Host instance to deploy to
         - install_method - *str* - method for installing the app
-        - local_templ_dir - *str* - local (on Ansible host machine) dir containing templates
+        - local_template_dir - *str* - local (on Ansible host machine) dir containing templates
           (optional)
         - local_work_dir = *str* - local (on Ansible host machine) temp working dir for templates,
           etc. (optional)
@@ -44,7 +44,7 @@ class Deployment:
         """Host to deploy to"""
         self.install_method = install_method
         """Install method"""
-        self.local_templ_dir = local_templ_dir
+        self.local_template_dir = local_template_dir
         """Local templates directory"""
         self.local_work_dir = local_work_dir
         """Local working directory"""
@@ -71,7 +71,8 @@ class Deployment:
             templ_vars = {
                 'app-name': self.app.name
             }
-            render_templates('{}/{}'.format(self.local_templ_dir, self.install_method),
+            # Render the templates
+            render_templates('{}/{}'.format(self.local_template_dir, self.install_method),
                              '{}/ansible-templates'.format(self.local_work_dir),
                              templ_vars=templ_vars)
         else:

@@ -154,7 +154,7 @@ def main(argv=None):
     # Deploy the app
     #
     deployment = Deployment(app, args.host, app.install_method,
-                            local_templ_dir='{}/../ansible-templates'.format(script_dir),
+                            local_template_dir='{}/../ansible-templates'.format(script_dir),
                             local_work_dir=work_dir)
     deployment.execute()
 
