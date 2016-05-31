@@ -152,9 +152,11 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Deploy the app
     #
+    # Create an instance of the Deployment class
     deployment = Deployment(app, args.host, app.install_method,
                             local_template_dir='{}/../ansible-templates'.format(script_dir),
                             local_work_dir=work_dir)
+    # Execute the Deployment
     deployment.execute()
 
     # ----------------------------------------------------------------------------------------------
