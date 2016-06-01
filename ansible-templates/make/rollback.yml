@@ -1,4 +1,4 @@
-# Ansistrano rollback playbook
+{% raw %}# Ansistrano rollback playbook
 ---
   # ------------------------------------------------------------------------------------------------
   # Hosts to deploy to (set to all if you want to be able to just limit installation to specific
@@ -20,3 +20,4 @@
       # Ansistrano rollback role
       - role: carlosbuenosvinos.ansistrano-rollback
 ...
+{% endraw %}

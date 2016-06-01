@@ -1,4 +1,4 @@
-# Ansistrano deployment playbook
+{% raw %}# Ansistrano deployment playbook
 ---
   # ------------------------------------------------------------------------------------------------
   # Hosts to deploy to (set to all if you want to be able to just limit installation to specific
@@ -25,3 +25,4 @@
       # Installation
       - role: install
 ...
+{% endraw %}
