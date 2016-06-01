@@ -20,6 +20,7 @@ requirements = [
     'gitpython',
     'coloredlogs',
     'colorama',
+    'jinja2'
 ]
 
 setup(

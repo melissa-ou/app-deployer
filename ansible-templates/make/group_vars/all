@@ -1,0 +1,10 @@
+---
+# Name of your app (only use letters, numbers, dashes, or underscores)
+app_name: {{ app_name }}
+{% raw %}
+# Directory to contain your app(s)
+app_root: "{{ HOME }}/apps"
+# $HOME environment variable on the target machine
+HOME: "{{ ansible_env.HOME }}"
+{% endraw %}
+...

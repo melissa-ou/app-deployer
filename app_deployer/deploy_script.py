@@ -1,7 +1,10 @@
 # Import built-in packages
+import os
 import sys
+import shutil
 import logging
 import argparse
+from tempfile import mkdtemp
 
 # Import third-party packages
 import appdirs
@@ -89,6 +92,10 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Setup
     #
+    # Get script dir
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    # Create a temporary work directory
+    work_dir = mkdtemp(prefix='app-deployer-')
     # Get entry_point name
     entry_point = __name__.split('.')[-1].split('_')[0]
     # If argv is None, set it to sys.argv
@@ -97,9 +104,8 @@ def main(argv=None):
     # Parse command-line arguments
     args = parse_args(argv[1:])
     # Setup logging
-    logging.basicConfig(level=args.log_level)  # set log level for root logger
     logger = logging.getLogger('app_deployer')  # get instance of logger
-    coloredlogs.install(fmt='%(message)s')  # colorize logging output
+    coloredlogs.install(fmt='%(message)s', level=args.log_level)  # colorize logging output
 
     # ----------------------------------------------------------------------------------------------
     # Print out app inventory
@@ -146,8 +152,19 @@ def main(argv=None):
     # ----------------------------------------------------------------------------------------------
     # Deploy the app
     #
-    deployment = Deployment(app, args.host, app.install_method)
+    # Create an instance of the Deployment class
+    deployment = Deployment(app, args.host, app.install_method,
+                            local_template_dir='{}/../ansible-templates'.format(script_dir),
+                            local_work_dir=work_dir)
+    # Execute the Deployment
     deployment.execute()
+
+    # ----------------------------------------------------------------------------------------------
+    # Cleanup
+    #
+    # Remove work dir
+    os.chdir(os.path.expanduser('~'))
+    shutil.rmtree(work_dir)
 
 
 if __name__ == '__main__':
