@@ -1,6 +1,6 @@
 ---
 # Name of your app (only use letters, numbers, dashes, or underscores)
-app_name: test-app
+app_name: {{ app_name }}
 {% raw %}
 # Directory to contain your app(s)
 app_root: "{{ HOME }}/apps"

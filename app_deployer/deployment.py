@@ -69,8 +69,11 @@ class Deployment:
         elif self.install_method == 'make':
             logger.info('Deploying {} to {} using {}...'.format(self.app.name, self.host,
                                                                 self.install_method))
+            # TODO: Clone the app
+
+            # Specify template vars
             templ_vars = {
-                'app-name': self.app.name
+                'app_name': self.app.name
             }
             # Render the templates
             render_templates('{}/{}'.format(self.local_template_dir, self.install_method),
