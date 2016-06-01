@@ -23,6 +23,6 @@ def render_templates(in_dir, out_dir, templ_vars):
             # Render template
             loader = jinja2.FileSystemLoader(in_dir)
             env = jinja2.Environment(loader=loader)
-            templ = env.get_template(in_file)
+            template = env.get_template(in_file)
             with open(out_file, 'w') as f:
-                f.write(templ.render(templ_vars))
+                f.write(template.render(templ_vars))

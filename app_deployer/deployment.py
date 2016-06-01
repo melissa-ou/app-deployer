@@ -72,13 +72,13 @@ class Deployment:
             # TODO: Clone the app
 
             # Specify template vars
-            templ_vars = {
+            template_vars = {
                 'app_name': self.app.name
             }
             # Render the templates
             render_templates('{}/{}'.format(self.local_template_dir, self.install_method),
                              '{}/ansible-templates'.format(self.local_work_dir),
-                             templ_vars=templ_vars)
+                             templ_vars=template_vars)
         else:
             return DeploymentError(
                 'The install method for the app {} is set to {}, which is not a valid option - it '
